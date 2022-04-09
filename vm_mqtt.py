@@ -14,7 +14,7 @@ config = configparser.RawConfigParser()
 config.read('VM_MQTT.cfg')
 config.sections()
 
-#ToDo cleanup passwords
+
 #MQTT Broker
 BROKER = config.get('MQTT', 'BROKER')
 BROKER_PORT = config.get('MQTT', 'BROKER_PORT')
