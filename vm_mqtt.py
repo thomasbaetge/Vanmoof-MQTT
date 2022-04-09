@@ -9,15 +9,18 @@ import bleak
 from pymoof.clients.sx3 import Sound
 from pymoof.clients.sx3 import SX3Client
 from pymoof.tools import discover_bike
+import configparser
 
-
+config = configparser.RawConfigParser()
+config.read('VM_MQTT.cfg')
+config.sections()
 
 #ToDo cleanup passwords
 #MQTT Broker
-BROKER = '192.168.2.11'
-BROKER_PORT = 1883
-BROKER_USER = 'tba_home'
-BROKER_PW = 'kitty2019!'
+BROKER = config.get('MQTT', 'BROKER')
+BROKER_PORT = config.get('MQTT', 'BROKER_PORT')
+BROKER_USER = config.get('MQTT', 'BROKER_USER')
+BROKER_PW =  config.get('MQTT', 'BROKER_PW')
 # other constants
 # not required
 
