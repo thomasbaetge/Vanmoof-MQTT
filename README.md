@@ -1,6 +1,9 @@
 # Vanmoof-MQTT
 MQTT integration of PYMOOF
 
+Disclaimer:  
+whatever you do with this, is on yourself. I am not reliable for exploding bikes or any other trouble you get yourself into.  
+
 This is based on Henri Bai's great work for the VM bluetooth API  
 https://github.com/quantsini/pymoof  
 Main credit goes to him!
@@ -15,7 +18,7 @@ What it can do:
 ...more to come as we may need it...  
 
 Limitations:  
-this will only work for one bike with one user by restriction of the API. If you happen to have more VM bikes, only one will work. I may look into that later. 
+this will only work for one bike by current restriction of the API. If you happen to have more VM bikes, only one will work. I may look into that later. 
 
 What you need:
 
@@ -43,7 +46,7 @@ if you get bluetooth permission errors, you need to add you user to the bluetoot
 sudo adduser <user> bluetooth  
 and reboot for the changes to take effect.
 
-You will need your bikes encryption key, the key_id and the bike's frame number, so you need to retrieve it once from the VM server. In order to get that and verify that you installed all dependencies properly, run the sample program. that will also verify your install is okay (if this goes belly up, the main program will too)  
+You will need your bikes encryption key, the key_id and the bike's frame number, so you need to retrieve it once from the VM server. In order to get that and verify that you installed all dependencies properly, run the sample program. that will also verify your install is okay (if this goes belly up, the main program will most likely too)  
 
 if all goes well and the programm is up and running, you can then set up your own Node-Red flow for communication with your bike.
 You can start by importing the sample flow and play with it.
@@ -53,8 +56,13 @@ MQTT Topics:
 - Vanmoof/status (gives status information and errors, i.e. if your bike is not present)
 - Vanmoof_S3/<framenumber>/battery
 - Vanmoof_S3/<framenumber>/mileage
-- Vanmoof_S3/<framenumber>/lockstate
-  ...do what it says in the topic ;)
+- Vanmoof_S3/<framenumber>/lockstate  
+  ...do exactly what the topics suggest ;)  
+  
+ Suggestions for usage:  
+ - Charge your battery up to a predefined level, using some switch on the charger you can control  
+ - calculate power consumption and expected range  
+ - Low battery warning when not using the bike for a while
 
 
 
