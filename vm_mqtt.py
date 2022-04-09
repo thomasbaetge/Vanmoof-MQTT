@@ -12,14 +12,14 @@ from pymoof.tools import discover_bike
 
 
 
-
+#ToDo cleanup passwords
 #MQTT Broker
 BROKER = '192.168.2.11'
 BROKER_PORT = 1883
 BROKER_USER = 'tba_home'
 BROKER_PW = 'kitty2019!'
 # other constants
-
+# not required
 
 async def bike_command(s3_command,encryption_key,key_id):
         print (s3_command)
