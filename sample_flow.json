@@ -1,0 +1,388 @@
+[
+    {
+        "id": "1297e9a3878fe58e",
+        "type": "tab",
+        "label": "Vanmoof S3 SAMPLE",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "a0739abb10fb03ac",
+        "type": "mqtt out",
+        "z": "1297e9a3878fe58e",
+        "name": "",
+        "topic": "Vanmoof_S3/in",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "eb1a2174a2e8f680",
+        "x": 700,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "70732ecb8d1266e8",
+        "type": "json",
+        "z": "1297e9a3878fe58e",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 450,
+        "y": 100,
+        "wires": [
+            [
+                "a0739abb10fb03ac"
+            ]
+        ]
+    },
+    {
+        "id": "f6983ee1ccd8f8c2",
+        "type": "debug",
+        "z": "1297e9a3878fe58e",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 690,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "cfe39ebc6f1a79df",
+        "type": "function",
+        "z": "1297e9a3878fe58e",
+        "name": "",
+        "func": "msg.payload = \n    {\n        \"command\": \"GET_BATTERY_LEVEL\",\n        \"encryption_key\": \"024df283d205af15ea3483e5f622bf93\",\n        \"key_id\": 1\n    }\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 280,
+        "y": 100,
+        "wires": [
+            [
+                "70732ecb8d1266e8",
+                "f6983ee1ccd8f8c2"
+            ]
+        ]
+    },
+    {
+        "id": "8270b23fc841c7e5",
+        "type": "inject",
+        "z": "1297e9a3878fe58e",
+        "name": "Battery",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 90,
+        "y": 100,
+        "wires": [
+            [
+                "cfe39ebc6f1a79df"
+            ]
+        ]
+    },
+    {
+        "id": "349796bb62f40979",
+        "type": "mqtt in",
+        "z": "1297e9a3878fe58e",
+        "name": "",
+        "topic": "Vanmoof_S3/ASY3122712/battery",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "eb1a2174a2e8f680",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 180,
+        "y": 360,
+        "wires": [
+            [
+                "79b7544ced00953c",
+                "8821a81913051984"
+            ]
+        ]
+    },
+    {
+        "id": "79b7544ced00953c",
+        "type": "debug",
+        "z": "1297e9a3878fe58e",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 750,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "1dbdf18e8c857b19",
+        "type": "function",
+        "z": "1297e9a3878fe58e",
+        "name": "",
+        "func": "msg.payload = \n    {\n        \"command\": \"DISTANCE_TRAVELLED\",\n        \"encryption_key\": \"024df283d205af15ea3483e5f622bf93\",\n        \"key_id\": 1\n    }\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 280,
+        "y": 200,
+        "wires": [
+            [
+                "a0739abb10fb03ac",
+                "f6983ee1ccd8f8c2"
+            ]
+        ]
+    },
+    {
+        "id": "a5b804ae3c7b4c08",
+        "type": "inject",
+        "z": "1297e9a3878fe58e",
+        "name": "Mileage",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 90,
+        "y": 200,
+        "wires": [
+            [
+                "1dbdf18e8c857b19"
+            ]
+        ]
+    },
+    {
+        "id": "8821a81913051984",
+        "type": "function",
+        "z": "1297e9a3878fe58e",
+        "name": "",
+        "func": "msg.payload = {\n    \"command\": \"udevice\",\n    \"idx\": 544,\n    \"nvalue\": parseFloat(msg.payload),\n    \"svalue\": msg.payload\n}\n\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 460,
+        "y": 360,
+        "wires": [
+            [
+                "77690bbdcd9e3434",
+                "d498175205bc2db1"
+            ]
+        ]
+    },
+    {
+        "id": "77690bbdcd9e3434",
+        "type": "mqtt out",
+        "z": "1297e9a3878fe58e",
+        "name": "",
+        "topic": "domoticz/in",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "eb1a2174a2e8f680",
+        "x": 670,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "d498175205bc2db1",
+        "type": "debug",
+        "z": "1297e9a3878fe58e",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 650,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "1894154a6d35b28f",
+        "type": "mqtt in",
+        "z": "1297e9a3878fe58e",
+        "name": "",
+        "topic": "Vanmoof/status",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "eb1a2174a2e8f680",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 180,
+        "y": 560,
+        "wires": [
+            [
+                "79b7544ced00953c"
+            ]
+        ]
+    },
+    {
+        "id": "9b52357279846997",
+        "type": "mqtt in",
+        "z": "1297e9a3878fe58e",
+        "name": "",
+        "topic": "Vanmoof_S3/ASY3122712/mileage",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "eb1a2174a2e8f680",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 180,
+        "y": 460,
+        "wires": [
+            [
+                "79b7544ced00953c"
+            ]
+        ]
+    },
+    {
+        "id": "2863e144ef762a69",
+        "type": "inject",
+        "z": "1297e9a3878fe58e",
+        "name": "Lock State",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 100,
+        "y": 260,
+        "wires": [
+            [
+                "9e48aedd1a9d94f5"
+            ]
+        ]
+    },
+    {
+        "id": "1578afcd9f4f5291",
+        "type": "mqtt in",
+        "z": "1297e9a3878fe58e",
+        "name": "",
+        "topic": "Vanmoof_S3/ASY3122712/lockstate",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "eb1a2174a2e8f680",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 180,
+        "y": 520,
+        "wires": [
+            [
+                "79b7544ced00953c"
+            ]
+        ]
+    },
+    {
+        "id": "9e48aedd1a9d94f5",
+        "type": "function",
+        "z": "1297e9a3878fe58e",
+        "name": "",
+        "func": "msg.payload = \n    {\n        \"command\": \"LOCK_STATE\",\n        \"encryption_key\": \"024df283d205af15ea3483e5f622bf93\",\n        \"key_id\": 1\n    }\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 280,
+        "y": 260,
+        "wires": [
+            [
+                "f6983ee1ccd8f8c2",
+                "a0739abb10fb03ac"
+            ]
+        ]
+    },
+    {
+        "id": "eb1a2174a2e8f680",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "192.168.2.11",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    }
+]
