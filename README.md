@@ -22,7 +22,7 @@ this will only work for one bike by current restriction of the API. If you happe
 
 What you need:
 
-- A Vanmoof bike (SX3, S2)...obviously..;)
+- A Vanmoof bike (S3, X3)...obviously..;)
 - A Linux machine running Python 3.8 or above (prefereably a Raspberry PI) in the vicinity of you bike (i.e. in the same room)  
 - A MQTT-Broker like mosquitto (can be on the same machine or elsewhere)  
 - A Node-Red installation (again: same machine or elsewhere)  
