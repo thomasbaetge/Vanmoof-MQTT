@@ -60,9 +60,7 @@ MQTT Topics:
   ...do exactly what the topics suggest ;)  
   
  Suggestions for usage:  
- - Charge your battery up to a predefined level, using some switch on the charger you can control  
- - calculate power consumption and expected range  
- - Low battery warning when not using the bike for a while
+it's kinda useless...I did it anyway.
 
 
 
