@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 
+from multiprocessing.connection import Client
 import sys
 import json
 import paho.mqtt.client as mqtt
@@ -45,7 +46,7 @@ async def bike_command(s3_command,encryption_key,key_id):
         except Exception as e:
             print(e)
             mclient.publish('Vanmoof/status', 'bike not found')
-        await bleak_client.disconnect(device)
+        await bleak_client.disconnect()
 
 class mqttClient:
 
@@ -81,6 +82,7 @@ if __name__ == "__main__":
     mclient = mqtt.Client('Vanmoof_S3')
  
     MqttClient = mqttClient()
+
 
      
 
