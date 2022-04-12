@@ -17,7 +17,7 @@ config.sections()
 
 #MQTT Broker
 BROKER = config.get('MQTT', 'BROKER')
-BROKER_PORT = config.get('MQTT', 'BROKER_PORT')
+BROKER_PORT = config.getint('MQTT', 'BROKER_PORT')
 BROKER_USER = config.get('MQTT', 'BROKER_USER')
 BROKER_PW =  config.get('MQTT', 'BROKER_PW')
 # other constants
@@ -39,10 +39,13 @@ async def bike_command(s3_command,encryption_key,key_id):
                 if s3_command == 'LOCK_STATE':
                     await client.authenticate()
                     mclient.publish('Vanmoof_S3/'+frame_number+'/lockstate',str(await client.get_lock_state()) )
+                    
+                
                 # tbc.....
         except Exception as e:
             print(e)
             mclient.publish('Vanmoof/status', 'bike not found')
+        await bleak_client.disconnect(device)
 
 class mqttClient:
 
