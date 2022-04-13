@@ -33,6 +33,7 @@ Install Python dependencies:
 - pip3 install bleak    
 - pip3 install pymoof  
 - pip3 install paho-mqtt  
+- pip3 install json  
 
 - copy vm_mqtt.py and VM_MQTT.cfg into a directory of choice i.e. /home/pi/vanmoof or elsewhere  
 - edit VM_MQTT.cfg according to your MQTT Broker's settings  
