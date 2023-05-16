@@ -3,6 +3,8 @@ MQTT integration of PYMOOF
 
 UPDATE 2023: As I no longer have a VM bike and don't plan on buying any more of their products, this repo is discontinued.
 It will still work, but I can only provide limited assistance.
+However, if you just purchased one of their 'products', this integration is the least of your worries, because their bikes tend to have a very short lifespan and they have no customer support to speak of in the first place.
+Be smart - buy something else.
 
 Disclaimer:  
 whatever you do with this, is on yourself. I am not reliable for exploding bikes or any other trouble you get yourself into.  
